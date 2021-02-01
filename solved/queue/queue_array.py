@@ -6,10 +6,10 @@ class Queue:
         return len(self.storage)
 
     def enqueue(self, value):
-        self.storage.append(value)
+        self.storage.insert(0, value)  # add to head
 
     def dequeue(self):
         if not self.storage:
             return None  # nothing to remove, nothing to return
 
-        return self.storage.pop()
+        return self.storage.pop()  # remove from tail

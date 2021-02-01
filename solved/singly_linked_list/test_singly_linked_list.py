@@ -1,6 +1,7 @@
 import unittest
 from singly_linked_list import LinkedList
 
+
 class LinkedListTests(unittest.TestCase):
     def setUp(self):
         self.list = LinkedList()
@@ -36,6 +37,7 @@ class LinkedListTests(unittest.TestCase):
         self.assertIsNone(self.list.head)
         self.assertIsNone(self.list.tail)
         self.assertIsNone(self.list.remove_tail())
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,6 +1,10 @@
 import unittest
 from stack import Stack
 
+
+# from stack_array import Stack
+# from stack_quick_impl import Stack
+
 class QueueTests(unittest.TestCase):
     def setUp(self):
         self.stack = Stack()
