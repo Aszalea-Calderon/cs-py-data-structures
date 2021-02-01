@@ -124,7 +124,7 @@ class DoublyLinkedList:
             return None  # nothing to remove; return out
 
         tail_to_remove = self.tail  # copy value of current tail before deletion (for return)
-        tail_to_remove.prev = tail_to_remove.next = None  # remove any ties to list
+
 
         if self.size == 1:  # if only one item in list
             self.head = self.tail = None  # list will now be empty
@@ -133,6 +133,7 @@ class DoublyLinkedList:
             self.tail.prev.next = None  # reassign new tail's prev to None (last item)
             self.tail = self.tail.prev  # shift tail left
 
+        tail_to_remove.prev = tail_to_remove.next = None  # remove any ties to list
         self.size -= 1  # decrease size (deleting el)
         return tail_to_remove.value  # return value of removed tail
 
