@@ -16,35 +16,7 @@ traditionally:
  - in theory, middle node will be ROOT (if we code correctly)
 
 """
-from collections import deque
-
-
-class Stack:
-    def __init__(self):
-        self.storage = deque()
-
-    def __len__(self):
-        return len(self.storage)
-
-    def push(self, value):
-        self.storage.append(value)
-
-    def pop(self):
-        return self.storage.pop()
-
-
-class Queue:
-    def __init__(self):
-        self.storage = deque()
-
-    def __len__(self):
-        return len(self.storage)
-
-    def enqueue(self, value):
-        self.storage.append(value)
-
-    def dequeue(self):
-        return self.storage.popleft()
+from util import Stack, Queue
 
 
 class BSTNode:
@@ -55,8 +27,8 @@ class BSTNode:
 
     # Insert the given key into the tree
     def insert(self, value):  # either create or insert
-        if value == self.value:
-            return
+        # if value == self.value:
+        #     return
 
         if value < self.value:
             if self.left is not None:
@@ -72,29 +44,34 @@ class BSTNode:
     # Return True if the tree contains the key
     # False if it does not
     def contains(self, target):
-        # note: may be missing an edge case handle (perhaps if these things don't even exist)
-        # if tests work, tests are bad but we're smart
 
-        if self.value == target:
+        if self.value == target:  # current node is target
             return True
 
-        else:
-            if self.left.value < target:
-                self.right.contains(target)  # recurse
+        elif self.value < target:  # go right b/c current node is smaller than target
+            if self.right is None:  # if there is no node to the right
+                return False  # target does not exist in tree
 
-            else:
-                self.left.contains(target)  # recurse
+            else:  # else, there is a right
+                return self.right.contains(target)  # so recurse with right node
 
-        return False
+        else:  # go left b/c current node is greater than target
+            if self.left is None:  # if no node to the left
+                return False  # target does not exist in tree
+
+            else:  # else, there is a left
+                return self.left.contains(target)  # recurse with left node
 
     # Return the maximum key found in the tree
     def get_max(self):
         # max should be the rightmost node
-        while self.right is not None:  # while current.right exists
-            self.right.get_max()  # recurse
+        current = self
 
-        # if this doesn't work, it's our fault somewhere else (probably)
-        return self.value  # once we reach here, we're at rightmost node (highest key)
+        while current.right is not None:  # while current.right exists
+            current = current.right  # move right down the tree
+
+        # once we reach here, we're at rightmost node (highest key)
+        return current.value
 
     # Call the function `fn` on the key of each node
     def for_each(self, fn):
@@ -103,7 +80,7 @@ class BSTNode:
         # create one large callstack then call all together
         # continue until end — these do not run simultaneously
         if self.left:
-            self.left.for_each(fn)  # inception
+            self.left.for_each(fn)
 
         if self.right:
             self.right.for_each(fn)
@@ -179,23 +156,23 @@ class BSTNode:
 """
 This code is necessary for testing the `print` methods
 """
-# bst = BSTNode(1)
-#
-# bst.insert(8)
-# bst.insert(5)
-# bst.insert(7)
-# bst.insert(6)
-# bst.insert(3)
-# bst.insert(4)
-# bst.insert(2)
-#
-# bst.bft_print()
-# bst.dft_print()
-#
-# print("elegant methods")
-# print("pre order")
-# bst.pre_order_dft()
-# print("in order")
-# bst.in_order_print()
-# print("post order")
-# bst.post_order_dft()
+bst = BSTNode(1)
+
+bst.insert(8)
+bst.insert(5)
+bst.insert(7)
+bst.insert(6)
+bst.insert(3)
+bst.insert(4)
+bst.insert(2)
+
+bst.bft_print()
+bst.dft_print()
+
+print("elegant methods")
+print("pre order")
+bst.pre_order_dft()
+print("in order")
+bst.in_order_print()
+print("post order")
+bst.post_order_dft()
