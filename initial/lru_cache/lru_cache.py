@@ -1,5 +1,5 @@
 # DoublyLinkedList will be used as primary storage
-from initial.doubly_linked_list.doubly_linked_list import DoublyLinkedList, ListNode
+from initial.doubly_linked_list.doubly_linked_list import DoublyLinkedList, Node
 
 
 class LRUCache:

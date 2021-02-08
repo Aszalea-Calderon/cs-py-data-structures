@@ -1,13 +1,13 @@
 class Node:
     """
-    A class representation of a LinkedList Node.
+    A class representation of a DoublyLinkedList Node.
 
     Each Node will store
     (1) a value (could be of any type) and
-    (2) a reference to the next Node in list.
+    (2) a reference to the next_node Node in list.
     """
 
-    def __init__(self, value=None):
+    def __init__(self, value):
         self.value = value
         self.next = None
 
@@ -24,12 +24,12 @@ class LinkedList:
     (2) the tail (last node in list).
 
     Each item in list will be an instance of class Node (defined above) and
-    each node instance will store a value and a reference to the next Node in list.
+    each node instance will store a value and a reference to the next_node Node in list.
     """
 
     def __init__(self):
         """
-        Constructs a new instance of a LinkedList
+        Constructs a new instance of a DoublyLinkedList
         """
         # NOTE: Nothing to do in here right now
         self.head = None
@@ -44,6 +44,9 @@ class LinkedList:
         """
         # TODO: IMPLEMENT THIS METHOD
         # Please note that the value coming in is NOT an instance of the Node class
+        ###############################
+        # wrap the given value in a Node and insert it as the new head of the list
+        ###############################
         pass
 
     def add_to_tail(self, value):

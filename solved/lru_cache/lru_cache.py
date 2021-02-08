@@ -1,4 +1,4 @@
-from solved.doubly_linked_list.doubly_linked_list import DoublyLinkedList, ListNode
+from solved.doubly_linked_list.doubly_linked_list import DoublyLinkedList, Node
 
 
 class LRUCache:
@@ -70,12 +70,12 @@ class LRUCache:
         else:
             if self.current == 0:  # if there is no cache
                 # doubly linked list is slightly faster than single (multiple references)
-                self.cache = DoublyLinkedList(ListNode(key))
+                self.cache = DoublyLinkedList(Node(key))
                 self.storage[key] = value  # first item in cache!
                 self.current += 1  # add 1 to current slots taken
 
             elif self.current == self.limit:  # this will be fixed later
-                removed_key = self.cache.remove_from_tail()  # removed old node from tail in doubly linked list
+                removed_key = self.cache.remove_tail()  # removed old node from tail in doubly linked list
                 del self.storage[removed_key]  # remove reference to old node in dictionary
                 self.cache.add_to_head(key)  # add new node to head
                 self.storage[key] = value  # overwrite the new key

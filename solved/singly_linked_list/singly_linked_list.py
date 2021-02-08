@@ -1,9 +1,9 @@
 class Node:
     """
-    Class representation of a LinkedList Node.
+    Class representation of a DoublyLinkedList Node.
 
     Each Node will store a value and a reference
-    to the next Node in list.
+    to the next_node Node in list.
     """
 
     def __init__(self, value=None):
@@ -17,7 +17,7 @@ class Node:
         # the value to store in this Node (can be of any type)
         self.value = value
 
-        # a reference to the next node (only None if Node is last in list)
+        # a reference to the next_node node (only None if Node is last in list)
         self.next = None
 
     def __repr__(self):
@@ -38,12 +38,12 @@ class LinkedList:
     Stores a reference to both the head (first node in list)
     and the tail (last node in list). Each item in list will be of
     class Node (defined above) and will store a value and a reference
-    to the next Node in list.
+    to the next_node Node in list.
     """
 
     def __init__(self):
         """
-        Constructor method for a LinkedList instance
+        Constructor method for a DoublyLinkedList instance
         """
 
         self.head = None
@@ -71,7 +71,7 @@ class LinkedList:
         # else, there is at least one item in list
         #
         # the new_node will come before current head
-        # thus, the new_node.next should point at current head
+        # thus, the new_node.next_node should point at current head
         new_node.next = self.head
 
         # assign new_node as the current head
@@ -127,7 +127,7 @@ class LinkedList:
         # most important part of method below
         # notice that this happens with one item in list or more
         #
-        # assign our self.head to point at the next Node,
+        # assign our self.head to point at the next_node Node,
         # effectively removing self.head from the list entirely
         self.head = self.head.next
 
@@ -160,13 +160,13 @@ class LinkedList:
         # loop through entire list until we hit the Node BEFORE self.tail
 
         current_node = self.head  # start at very beginning
-        # if current_node.next IS self.tail, then we have the node before tail!
+        # if current_node.next_node IS self.tail, then we have the node before tail!
         # otherwise, loop again
         while current_node.next is not self.tail:
-            # reassign our current_node pointer to its next value
+            # reassign our current_node pointer to its next_node value
             current_node = current_node.next
 
-        # reassign current_node.next to point at None rather
+        # reassign current_node.next_node to point at None rather
         # than the node that is at self.tail
         current_node.next = None
         # then, reassign current_node as the new tail!
