@@ -12,10 +12,10 @@ class LinkedList:
         self.head = None
         self.tail = None
 
-    def add_to_tail(self, value):
+    def add_to_head(self, value):
         pass
 
-    def add_to_head(self, value):
+    def add_to_tail(self, value):
         pass
 
     def remove_head(self):

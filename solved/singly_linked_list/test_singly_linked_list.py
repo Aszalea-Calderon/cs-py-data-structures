@@ -6,6 +6,17 @@ class LinkedListTests(unittest.TestCase):
     def setUp(self):
         self.list = LinkedList()
 
+    def test_add_to_head(self):
+        self.list.add_to_head(1)
+        self.assertEqual(self.list.head.value, 1)
+        self.assertEqual(self.list.tail.value, 1)
+        self.list.add_to_head(2)
+        self.assertEqual(self.list.head.value, 2)
+        self.assertEqual(self.list.tail.value, 1)
+        self.list.add_to_head(3)
+        self.assertEqual(self.list.head.value, 3)
+        self.assertEqual(self.list.tail.value, 1)
+
     def test_add_to_tail(self):
         self.list.add_to_tail(1)
         self.assertEqual(self.list.tail.value, 1)
