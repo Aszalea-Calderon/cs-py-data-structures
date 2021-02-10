@@ -126,12 +126,31 @@ class DoublyLinkedList:
         return value_to_remove
 
 
-    def move_to_front(self, node):
+    def move_to_front(self, current_node):
         """
-        Removes the input node from its current spot in the
-        List and inserts it as the new head node of the List.
+        Removes the input current_node from its current spot in the
+        List and inserts it as the new head current_node of the List.
         """
-        pass
+        if self.size == 0:
+            return
+        # Oh my, people suck sometimes*, lets check dat current_node
+        if not current_node or (not current_node.next and not current_node.prev):
+            # This is saying if current_node is not existant aka none (not current_node) 
+            # or current_node is not attached to anything. aka falsey that it is part of the list. It checks if it equals to 1. You can't move the item of position 1 to item position 1
+            return
+        if self.head is current_node:
+            return
+            # if the current_node is already at the head, why you moving it bro?
+        if self.tail is current_node:
+            self.tail = current_node.prev
+        else:
+            current_node.next.prev = current_node.prev
+        current_node.prev.next = current_node.next
+        
+        self.head.prev = current_node
+        current_node.next = self.head
+        current_node.prev = None
+        self.head = current_node
 
     def move_to_end(self, node):
         """
