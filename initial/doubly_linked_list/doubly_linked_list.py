@@ -69,7 +69,22 @@ class DoublyLinkedList:
         current head's next_node node the new head of the List.
         Returns the value of the removed Node.
         """
-        pass
+
+        if self.size == 0:
+            return
+
+        removed_value = self.head.value  # This grabs the value of current head so when it is deleted we can actually return it.
+
+        if self.size == 1:
+            self.head = self.tail = None
+        else:
+            self.head = self.head.next  # Shifts head to the right. NICE! =D
+            self.head.prev = None  # Says there is nothing before the new head. 
+
+        self.size -= 1  # Changes the size of the list 
+
+        return removed_value
+
 
     def add_to_tail(self, value):
         """
@@ -80,14 +95,14 @@ class DoublyLinkedList:
         new_node = Node(value)
 
         if self.size == 0: 
-            self.head = self.tail = new_node # this is assigning it to both because there is nothing!!
+            self.head = self.tail = new_node  # this is assigning it to both because there is nothing!!
 
         else:
-            self.tail.next = new_node
-            new_node.prev = new_node
-            self.tail = new_node
+            self.tail.next = new_node  # place new_node after tail 
+            new_node.prev = new_node  # place current tail before new_node
+            self.tail = new_node  # replace self.tail
             
-
+        self.size +=1  # increase size of list
 
     def remove_tail(self):
         """
@@ -95,7 +110,21 @@ class DoublyLinkedList:
         current tail's previous node the new tail of the List.
         Returns the value of the removed Node.
         """
-        pass
+        if self.size == 0:
+            return
+
+        value_to_remove = self.tail.value  # This grabs the value of current head so when it is deleted we can actually return it.
+
+        if self.size == 1:
+            self.head = self.tail = None
+
+        else:
+            self.tail = self.tail.prev  # This assigns it to the prior tail
+            self.tail.next = None  # Nothing comes after this new tail. NOTHING. 
+
+        self.size -= 1
+        return value_to_remove
+
 
     def move_to_front(self, node):
         """
