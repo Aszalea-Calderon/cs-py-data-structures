@@ -130,3 +130,11 @@ class LinkedList:
         current_node.next = None
         self.tail = current_node
         return old_tail_value
+
+
+        '''
+        Why linked lists. 
+
+        if you had a list 
+        reg_list = [43, 32, 63]
+        '''

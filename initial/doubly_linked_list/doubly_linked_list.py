@@ -11,6 +11,9 @@ class Node:
         self.prev = prev
         self.value = value
         self.next = next
+       
+    def __repr__(self):
+        return f"Node({self.value})"
 
 
 class DoublyLinkedList:
@@ -49,7 +52,16 @@ class DoublyLinkedList:
         as the new head of the list. Don't forget to handle
         the old head node's previous pointer accordingly.
         """
-        pass
+        new_node = Node(value)
+        if self.size == 0: 
+            self.head = self.tail = new_node # this is assigning it to both because there is nothing!!
+        else:
+            new_node.next = self.head  # New node will before the current head
+            self.head.prev = new_node  # The current head will be after the new node 
+            self.head = new_node # This assigns the new linked list to be the new node head
+        self.size +=1 # this adds to the size
+
+        # yay! We did it. 
 
     def remove_head(self):
         """
@@ -65,7 +77,17 @@ class DoublyLinkedList:
         as the new tail of the list. Don't forget to handle
         the old tail node's next_node pointer accordingly.
         """
-        pass
+        new_node = Node(value)
+
+        if self.size == 0: 
+            self.head = self.tail = new_node # this is assigning it to both because there is nothing!!
+
+        else:
+            self.tail.next = new_node
+            new_node.prev = new_node
+            self.tail = new_node
+            
+
 
     def remove_tail(self):
         """
