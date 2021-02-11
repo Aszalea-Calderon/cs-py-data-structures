@@ -99,7 +99,7 @@ class DoublyLinkedList:
 
         else:
             self.tail.next = new_node  # place new_node after tail 
-            new_node.prev = new_node  # place current tail before new_node
+            new_node.prev = self.tail  # place current tail before new_node
             self.tail = new_node  # replace self.tail
             
         self.size +=1  # increase size of list
@@ -146,25 +146,67 @@ class DoublyLinkedList:
         else:
             current_node.next.prev = current_node.prev
         current_node.prev.next = current_node.next
-        
+          # below reassigns the pointers, See notes
         self.head.prev = current_node
         current_node.next = self.head
         current_node.prev = None
+          # Next line now assigns the new head
         self.head = current_node
 
-    def move_to_end(self, node):
+    def move_to_end(self, current_node):
         """
         Removes the input node from its current spot in the
         List and inserts it as the new tail node of the List.
         """
-        pass
+        if self.size == 0:
+            return
+        if not current_node or (not current_node.next and not current_node.prev):
+            # This is saying if current_node is not existant aka none (not current_node)
+            # or current_node is not attached to anything. aka falsey that it is part of the list. It checks if it equals to 1. You can't move the item of position 1 to item position 1
+            return
+        if self.tail is current_node:
+            return
+        if self.head is current_node:
+            self.head = current_node.next
+        else:
+            # this deals with the current node
+            current_node.prev.next = current_node.next
+        current_node.next.prev = current_node.prev
 
-    def delete(self, node):
+              # This then deals with the tail
+        self.tail.next = current_node
+        current_node.prev = self.tail
+        current_node.next = None
+        self.tail = current_node
+
+
+
+    def delete(self, current_node):
         """
         Deletes the input node from the List, preserving the
         order of the other elements of the List.
         """
-        pass
+        # checking both if size if zero and if the node exists
+        if self.size == 0 or not current_node:
+            return
+        removed_value = current_node.value
+        if self.size == 1:
+            self.head = self.tail = None
+        else:
+            if not current_node.next and not current_node.prev:
+                return
+            if self.head is current_node:
+                self.head = self.head.next
+            elif self.tail is current_node:
+                self.tail = self.tail.prev
+            else:
+                current_node.next.prev = current_node.prev
+                current_node.prev.next = current_node.next
+        self.size -= 1
+        return removed_value
+    #  HUZZAH!
+
+
 
     def get_max(self):
         """

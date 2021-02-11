@@ -17,10 +17,30 @@ class BSTNode:
         self.value = value
         self.left = None
         self.right = None
+        # self.left = self.right = None
+
 
     # Insert the given value into the tree
-    def insert(self, value):
-        pass
+    def insert(self, new_value):
+        if new_value < self.value:# if newvalue is less than the value of the new node
+            # go left
+            if self.left:
+                #we have a left child
+                # let the left child deal with the new value
+                self.left.insert(new_value) # recursion, This then takes
+            else:
+                #since we don't have a left child,
+                # we'll make this value a Node, and make it our new left child
+                self.left = BSTNode(new_value)
+
+        else:
+            # new_value is larger than or equal to self.value
+            if self.right:# if our right child exists
+                # let the right child deal with new_value
+                self.right.insert(new_value)
+            else: # our right child does NOT exist
+                # so make a node with new_value and make that our right child
+                self.right = BSTNode(new_value)
 
     # Return True if the tree contains the value
     # False if it does not
@@ -29,9 +49,24 @@ class BSTNode:
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        current_node = self
+        # Loop thourgh each of the current_nodes on the right, this goes through each until we hit None
+        while current_node.right is not None:
+            current_node = current_node.right
 
-    # Call the function `fn` on the value of each node
+        # then we return the value of the current node with the value
+        return current_node.value
+
+
+    def get_min(self):
+        current_node = self
+        # Loop thourgh each of the current_nodes on the right, this goes through each until we hit None
+        while current_node.left is not None:
+            current_node = current_node.left
+
+        # then we return the value of the current node with the value
+        return current_node.value
+        # Call the function `fn` on the value of each node
     def for_each(self, fn):
         pass
 
